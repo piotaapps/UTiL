@@ -3,7 +3,7 @@ function XCallbackURL(_url) {
     this.parsedURI = parseUri(_url);
 }
 XCallbackURL.prototype.isCallbackURL = function() {
-    return this.parsedURI.host.toLowerCase() == 'x-callback-url';
+    return this.parsedURI.host.toLowerCase() == "x-callback-url";
 };
 XCallbackURL.prototype.action = function() {
     // Support non x-callback-url by falling back to host
@@ -31,16 +31,16 @@ XCallbackURL.prototype.params = function() {
     return null;
 };
 XCallbackURL.prototype.hasSource = function() {
-    return this.param('x-source') ? true : false;
+    return this.param("x-source") ? true : false;
 };
 XCallbackURL.prototype.source = function() {
-    return this.param('x-source');
+    return this.param("x-source");
 };
 XCallbackURL.prototype.hasCallback = function() {
-    return this.param('x-success') ? true : false;
+    return this.param("x-success") ? true : false;
 };
 XCallbackURL.prototype.callbackURL = function(_params) {
-    var url = this.param('x-success');
+    var url = this.param("x-success");
     if (!url) {
         return url;
     }
@@ -51,10 +51,10 @@ XCallbackURL.prototype.callbackURL = function(_params) {
     return url;
 };
 XCallbackURL.prototype.hasErrorCallback = function() {
-    return this.param('x-error') ? true : false;
+    return this.param("x-error") ? true : false;
 };
 XCallbackURL.prototype.errorCallbackURL = function(_code, _msg) {
-    var url = this.param('x-error');
+    var url = this.param("x-error");
     url += "?status=" + _code;
     url += "&message=" + escape(_msg);
     return url;
@@ -86,8 +86,8 @@ parseUri.options = {
         parser: /(?:^|&)([^&=]*)=?([^&]*)/g
     },
     parser: {
-        strict: /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,
-        loose: /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/
+        strict: /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/, // eslint-disable-line no-useless-escape
+        loose: /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/ // eslint-disable-line no-useless-escape
     }
 };
 
