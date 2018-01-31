@@ -9,6 +9,11 @@ XCallbackURL.prototype.action = function() {
     // Support non x-callback-url by falling back to host
     return this.parsedURI.file || this.parsedURI.host;
 };
+
+XCallbackURL.prototype.directory = function() {
+    return this.parsedURI.directory || this.parsedURI.relative;
+};
+
 XCallbackURL.prototype.param = function(_key) {
     if (this.parsedURI.queryKey && this.parsedURI.queryKey[_key]) {
         return unescape(this.parsedURI.queryKey[_key]);
